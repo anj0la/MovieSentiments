@@ -16,7 +16,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 
-def train(file_path: str, lr: float = 1e-1, epochs: int = 100, batch_size: int = 64, reg_lambda: float = 1e-2, patience: int = 3, min_delta: int = 10) -> None:
+def train(file_path: str, lr: float = 1e-1, epochs: int = 200, batch_size: int = 64, reg_lambda: float = 1e-3, patience: int = 3, min_delta: int = 10) -> None:
     """
     Trains the logisitic regression model.
 

@@ -173,7 +173,7 @@ class LogisticRegression:
             # Track epoch time
             epoch_start_time = time.time()
             
-            print(f'Starting epoch {epoch + 1}...')
+            print(f'\nStarting epoch {epoch + 1}...')
             
             # Generate batch indices and shuffle them
             batch_indices = np.arange(num_batches)
@@ -231,7 +231,7 @@ class LogisticRegression:
             
             # Print train and val metrics
             print(f'\t Epoch: {epoch + 1} out of {self.epochs}')
-            print(f'\t Time Taken: {epoch_duration:.2f}')
+            print(f'\t Time Taken: {epoch_duration:.2f} seconds')
             print(f'\t Train Loss: {avg_loss:.3f} | Train Acc: {train_accuracy * 100:.2f}%')
             print(f'\t Valid Loss: {val_loss:.3f} | Valid Acc: {val_accuracy * 100:.2f}%')
             
