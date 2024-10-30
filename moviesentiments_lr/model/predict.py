@@ -10,6 +10,7 @@ This file is used to make a prediction using the logistic regression model.
 TODO: Update documentation.
 """
 import joblib
+import numpy as np
 import pandas as pd
 from model.logistic_regression import LogisticRegression
 from utils.preprocess import clean_review
@@ -40,9 +41,9 @@ def make_prediction(sentence: str) -> None:
     model.load_model()
     
     # Make a prediction
-    prediction = model.predict(vectorized_sentence)
+    logits = model.predict(vectorized_sentence)
+    prediction = np.round(logits)
     prediction = prediction.astype(int).flatten()
     label = le.inverse_transform(prediction)
     
-    # Print the results
-    print(f'\tSentence: {sentence} \n\tPrediction: {label}')
+    return logits, label

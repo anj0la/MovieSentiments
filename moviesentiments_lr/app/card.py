@@ -2,6 +2,7 @@ def create_cards(test_values: list) -> str:
     card_html = f"""
         <style>
             .card {{
+                border: 2px solid rgba(0, 0, 0, 0.05);
                 background-color: #F5F5F5;
                 border-radius: 10px;
                 margin: 10px;

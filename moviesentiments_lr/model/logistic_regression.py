@@ -241,7 +241,7 @@ class LogisticRegression:
         plot_loss(x_axis=x_axis, train_losses=all_train_losses, val_losses=all_val_losses, figure_path=f'moviesentiments_lr/figures/loss_epoch_{len(x_axis)}_lr_{self.lr}.png')
         plot_accuracy(x_axis=x_axis, train_accuracy=all_train_accuracy,val_accuracy= all_val_accuracy, figure_path=f'moviesentiments_lr/figures/accuracy_epoch_{len(x_axis)}_lr_{self.lr}.png')
 
-    def predict(self, X: np.ndarray) -> int:
+    def predict(self, X: np.ndarray) -> float:
         """
         Predicts the probability (output either 0 or 1) for a given input X, by using the sigmoid function.
         As the sigmoid function may give a decimal value, we use np.round so that values over 0.5 (inclusive) are rounded up to 1,
@@ -251,10 +251,10 @@ class LogisticRegression:
             X (ndarray): The input to make a prediction on.
 
         Returns:
-            int: The predicted probability of the input (either 0 or 1).
+            float: The raw logits of the model.
         """
         z = np.dot(X, self.weights) + self.bias
-        return np.round(self._sigmoid(z))
+        return self._sigmoid(z)
     
     def evaluate(self, X_test: np.ndarray, y_test: np.ndarray) -> float:
         """
@@ -267,7 +267,7 @@ class LogisticRegression:
         Returns:
             float: The accuracy score.
         """
-        y_pred = self.predict(X_test)
+        y_pred = np.round(self.predict(X_test))
         
         # Calculate metrics
         accuracy = accuracy_score(y_test, y_pred)
