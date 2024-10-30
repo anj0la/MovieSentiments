@@ -11,7 +11,7 @@ This file contains the train function which is used to train the custom Logisiti
 import joblib
 import pandas as pd
 import time
-from model.logistic_regression import LogisticRegression
+from logistic_regression import LogisticRegression
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
@@ -71,4 +71,4 @@ def train(file_path: str, lr: float = 1e-1, epochs: int = 200, batch_size: int =
     print(f'Recall: {recall * 100:.2f}%')    
     print(f'F1 Score: {f1_score * 100:.2f}%')    
     
-train(file_path='moviesentiments_lr/data/reviews/cleaned_movie_reviews.csv')
+# train(file_path='moviesentiments_lr/data/reviews/cleaned_movie_reviews.csv')
