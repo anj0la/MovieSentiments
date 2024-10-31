@@ -50,7 +50,7 @@ On Windows:
 pip install -r requirements.txt
 ```
 
-### 5. Install and build the project
+### 5. Install and build the project.
 
 Example: installing the project by its name. 
 ```
@@ -61,7 +61,7 @@ Example: installing the project in editable mode.
 ```
 pip install -e .
 ```
-### 6. Run the project and make a prediction
+### 6. Run the project and make a prediction.
 ```
 moviesentiments --text "I loved the movie!"
 ```
