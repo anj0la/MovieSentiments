@@ -14,7 +14,6 @@ Functions:
 External Dependencies:
     - pandas: For data manipulation and formatting.
     - streamlit: Used for displaying content in a web application.
-
 """
 import pandas as pd
 import streamlit as st
@@ -26,12 +25,12 @@ def display_metrics_table() -> None:
     Metrics include accuracy, precision, recall, and F1 score, and are formatted to two decimal places.
     """
     data = {
-    "Learning Rate": ["0.1"] * 4 + ["0.01"] * 4,
-    "Epochs": [10, 25, 50, 100, 10, 25, 50, 100],
-    "Test Acc (%)": [82.12, 83.91, 85.50, 87.16, 79.84, 80.63, 81.13, 82.03],
-    "Precision (%)": [80.65, 81.24, 83.13, 85.82, 81.61, 79.99, 79.39, 80.37],
-    "Recall (%)": [84.88, 88.51, 89.36, 89.26, 77.44, 82.10, 84.48, 85.14],
-    "F1 Score (%)": [82.71, 84.72, 86.13, 87.51, 79.47, 81.03, 81.86, 82.68]
+    'Learning Rate': ['0.1'] * 4 + ['0.01'] * 4,
+    'Epochs': [10, 25, 50, 100, 10, 25, 50, 100],
+    'Test Acc (%)': [82.12, 83.91, 85.50, 87.16, 79.84, 80.63, 81.13, 82.03],
+    'Precision (%)': [80.65, 81.24, 83.13, 85.82, 81.61, 79.99, 79.39, 80.37],
+    'Recall (%)': [84.88, 88.51, 89.36, 89.26, 77.44, 82.10, 84.48, 85.14],
+    'F1 Score (%)': [82.71, 84.72, 86.13, 87.51, 79.47, 81.03, 81.86, 82.68]
     }
     
     # Create DataFrame
@@ -57,6 +56,5 @@ def run_page() -> None:
     
     display_metrics_table()
     
-
-    
+# Display the page
 run_page()

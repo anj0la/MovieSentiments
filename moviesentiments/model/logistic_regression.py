@@ -18,7 +18,7 @@ from tqdm import tqdm
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from moviesentiments.utils.early_stopper import EarlyStopper
-from utils.plot_graphs import plot_loss, plot_accuracy
+from moviesentiments.utils.plot_graphs import plot_loss, plot_accuracy
 
 class LogisticRegression:
     """

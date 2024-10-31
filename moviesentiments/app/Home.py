@@ -13,7 +13,6 @@ Functions:
 External Dependencies:
     - streamlit: Used to configure and display content in a web application.
     - create_cards (from card): Function to generate HTML-styled cards displaying model performance metrics.
-
 """
 import streamlit as st
 from card import create_cards
@@ -53,5 +52,5 @@ def run_app() -> None:
     
     st.divider()
     st.link_button(label='Source code', url='https://github.com/anj0la/MovieSentiments-LR', help='Click to visit source code on GitHub.', type='primary')
-
+    
 run_app()

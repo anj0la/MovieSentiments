@@ -19,7 +19,7 @@ External Dependencies:
 """
 import pandas as pd
 import streamlit as st
-# from moviesentiments.model.predict import make_prediction
+from moviesentiments.model.predict import make_prediction
 
 def init_session_state_vars() -> None:
     """
@@ -34,12 +34,10 @@ def get_prediction() -> None:
     """
     Sets the prediction and confidence score based on user input.
     """
-    if st.session_state.input_text == '':
+    if st.session_state.sentence == '':
         st.error('You did not enter anything, try again.')
         return
-    st.session_state.prediction = 'positive'
-    st.session_state.score = 0.8
-    # make_prediction(st.session_state.sentence)
+    st.session_state.score, st.session_state.prediction = make_prediction(st.session_state.sentence)
 
 def display_input_form() -> None:
     """
@@ -48,7 +46,7 @@ def display_input_form() -> None:
     st.title('Make a Prediction')
     st.write('Use the following text box to make a prediction and see the label and confidence score from the trained model.')
     with st.form('input_form'):
-        st.text_input(label='Input a sentence', placeholder='I loved the movie', help='Try inputting a sentence with a strong opinion for better results.', key='input_text')
+        st.text_input(label='Input a sentence', placeholder='I loved the movie', help='Try inputting a sentence with a strong opinion for better results.', key='sentence')
         st.form_submit_button(label='Submit', on_click=get_prediction, type='primary')
         
 def display_prediction_results():
@@ -59,7 +57,7 @@ def display_prediction_results():
         with st.container(border=True):
             # Prepare the data for display
             data = {
-                'Input Text': [st.session_state.input_text],
+                'Input Text': [st.session_state.sentence],
                 'Prediction': [st.session_state.prediction],
                 'Probability (Positive)': [f'{st.session_state.score:.2%}'],
                 'Probability (Negative)': [f'{1 - st.session_state.score:.2%}']

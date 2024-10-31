@@ -14,45 +14,59 @@ Functions:
 
 External Dependencies:
     - streamlit: Used for displaying content in a web application.
-
 """
 import streamlit as st
 
-def create_loss_columns(epoch1: int, epoch2: int, lr1: float = 0.1, lr2: float = 0.01):
+def create_loss_columns(epoch1: int, epoch2: int, lr1: float = 0.1, lr2: float = 0.01) -> None:
+    """
+    Displays loss graphs for two selected epochs and learning rates.
+
+    Args:
+        epoch1 (int): First epoch for which to display the loss graph.
+        epoch2 (int): Second epoch for which to display the loss graph.
+        lr1 (float): First learning rate to use for displaying graphs.
+        lr2 (float): Second learning rate to use for displaying graphs.
+    """
     col1, col2, col3, col4 = st.columns(4)
 
     with col1:
-        st.image(f'moviesentiments_lr/figures/loss_epoch_{epoch1}_lr_{lr1}.png')
-
+        st.image(f'moviesentiments/figures/loss_epoch_{epoch1}_lr_{lr1}.png')
     with col2:
-        st.image(f'moviesentiments_lr/figures/loss_epoch_{epoch1}_lr_{lr2}.png')
-        
+        st.image(f'moviesentiments/figures/loss_epoch_{epoch1}_lr_{lr2}.png')
     with col3:
-        st.image(f'moviesentiments_lr/figures/loss_epoch_{epoch2}_lr_{lr1}.png')
-
+        st.image(f'moviesentiments/figures/loss_epoch_{epoch2}_lr_{lr1}.png')
     with col4:
-        st.image(f'moviesentiments_lr/figures/loss_epoch_{epoch2}_lr_{lr2}.png')
+        st.image(f'moviesentiments/figures/loss_epoch_{epoch2}_lr_{lr2}.png')
         
     st.html(f"<p style='text-align: center; font-style: italic;'>Epochs {epoch1} & {epoch2} - Learning Rates: {lr1} & {lr2}</p>")
     
-def create_accuracy_columns(epoch1: int, epoch2: int, lr1: float = 0.1, lr2: float = 0.01):
+def create_accuracy_columns(epoch1: int, epoch2: int, lr1: float = 0.1, lr2: float = 0.01) -> None:
+    """
+    Displays accuracy graphs for two selected epochs and learning rates.
+
+    Args:
+        epoch1 (int): First epoch for which to display the accuracy graph.
+        epoch2 (int): Second epoch for which to display the accuracy graph.
+        lr1 (float): First learning rate to use for displaying graphs.
+        lr2 (float): Second learning rate to use for displaying graphs.
+    """
     col1, col2, col3, col4 = st.columns(4)
 
     with col1:
-        st.image(f'moviesentiments_lr/figures/accuracy_epoch_{epoch1}_lr_{lr1}.png')
-
+        st.image(f'moviesentiments/figures/accuracy_epoch_{epoch1}_lr_{lr1}.png')
     with col2:
-        st.image(f'moviesentiments_lr/figures/accuracy_epoch_{epoch1}_lr_{lr2}.png')
-        
+        st.image(f'moviesentiments/figures/accuracy_epoch_{epoch1}_lr_{lr2}.png') 
     with col3:
-        st.image(f'moviesentiments_lr/figures/accuracy_epoch_{epoch2}_lr_{lr1}.png')
-
+        st.image(f'moviesentiments/figures/accuracy_epoch_{epoch2}_lr_{lr1}.png')
     with col4:
-        st.image(f'moviesentiments_lr/figures/accuracy_epoch_{epoch2}_lr_{lr2}.png')
+        st.image(f'moviesentiments/figures/accuracy_epoch_{epoch2}_lr_{lr2}.png')
         
     st.html(f"<p style='text-align: center; font-style: italic;'>Epochs {epoch1} & {epoch2} - Learning Rates: {lr1} & {lr2}</p>")
 
-def display_graphs():
+def display_graphs() -> None:
+    """
+    Renders loss and accuracy graphs by epoch and learning rate.
+    """
     st.header('Loss Graphs by Epoch and Learning Rate')
     create_loss_columns(10, 25)
 
@@ -67,8 +81,10 @@ def display_graphs():
     st.write(' ') 
     create_accuracy_columns(50, 100)
 
-    
 def run_page():
+    """
+    Initializes the Training Progress page with loss and accuracy graphs for model evaluation.
+    """
     # Initalize the page and session variables
     st.set_page_config(page_title='Training Progress', layout='wide')
     
@@ -78,4 +94,5 @@ def run_page():
        
     display_graphs()
 
+# Display the page
 run_page()

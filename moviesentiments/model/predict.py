@@ -18,8 +18,8 @@ External Dependencies:
 import joblib
 import numpy as np
 import pandas as pd
-from model.logistic_regression import LogisticRegression
-from utils.preprocess import clean_review
+from moviesentiments.model.logistic_regression import LogisticRegression
+from moviesentiments.utils.preprocess import clean_review
 
 def make_prediction(sentence: str) -> tuple[float, str]:
     """
@@ -55,4 +55,4 @@ def make_prediction(sentence: str) -> tuple[float, str]:
     prediction = prediction.astype(int).flatten()
     label = le.inverse_transform(prediction)
     
-    return logits, label[0]
+    return logits[0], label[0]

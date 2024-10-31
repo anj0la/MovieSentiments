@@ -1,37 +1,45 @@
 """
 File: main.py
-
 Author: Anjola Aina
-Date Modified: October 30th, 2024
+Date Modified: October 30, 2024
 
-This file is the entry point for running the Streamlit application, providing an interactive interface for the logistic regression model.
+Description:
+    Command-line entry point for performing sentiment analysis on user-provided text 
+    using a logistic regression model. This script allows users to input text directly 
+    in the console and receive a sentiment prediction with probability scores.
+
+Dependencies:
+    - argparse: Handles command-line arguments for text input.
+    - moviesentiments.model.predict.make_prediction: Imports the function to perform 
+      the sentiment analysis on the input text.
 
 Functions:
-    add_args: Placeholder for future CLI argument handling.
-    main: Initializes and runs the Streamlit application by setting up layout and routing to different pages or views.
+    main: Sets up the command-line interface, parses text input, and outputs the 
+          sentiment prediction and probability scores.
 
-External Dependencies:
-    - streamlit: Utilized to configure and render the web application components.
+Usage:
+    Run this file with text input to obtain a sentiment prediction:
+        $ moviesentiments --text This is a fantastic movie!
 """
-
-def add_args():
-    """
-    Placeholder function for defining and parsing command-line arguments for application configuration.
-
-    TODO: Implement argument handling as needed for enhanced application flexibility.
-    """
-    pass
+import argparse
+from moviesentiments.model.predict import make_prediction
 
 def main():
-    """
-    Main function to initialize and run the Streamlit app, setting up layout and routing as required.
-    
-    TODO: Populate with application setup code, routing logic, and any initializations for app configuration.
-    """
-    pass
+    parser = argparse.ArgumentParser(description='Make a sentiment prediction from the command line.')
 
-if __name__ == '__main__':
-    """
-    Entry point for the Streamlit application. Runs the main function if the script is executed directly.
-    """
+    # Add arguments for the prediction input
+    parser.add_argument('--text', type=str, required=True, help='The text to analyze for sentiment.')
+    
+    # Parse arguments
+    args = parser.parse_args()
+
+    # Run prediction and output result
+    if args.text != ' ':
+        logits, result = make_prediction(args.text)  # Assuming `make_prediction` takes a single text input
+        print(f'Predicted sentiment: {result} | Logits: {logits}')
+        print(f'Positive probability: {logits:.2f} | Negative probability: {1 - logits:.2f}')
+    else:
+        print('Please provide text to analyze.')
+
+if __name__ == "__main__":
     main()
