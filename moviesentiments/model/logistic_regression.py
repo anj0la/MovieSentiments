@@ -4,9 +4,13 @@ File: logistic_regression.py
 Author: Anjola Aina
 Date Modified: October 30th, 2024
 
-Description:
+This module contains the LogisticRegression class, used for implementing a binary classifier with a sigmoid activation function.
 
-This file contains the LogisticRegression class which is used to implement a binary classifier with a sigmoid activation function.
+Classes:
+    LogisticRegression: Implements the logistic regression model for binary classification tasks.
+
+External Dependencies:
+    - numpy: For matrix operations and handling numerical data.
 """
 import numpy as np
 import time

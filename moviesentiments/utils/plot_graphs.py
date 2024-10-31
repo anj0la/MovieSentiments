@@ -4,7 +4,14 @@ File: plot_graphs.py
 Author: Anjola Aina
 Date Modified: October 29th, 2024
 
-This file defines functions used to plot the loss and accuracy when training models.
+This module defines functions used to plot model training loss and accuracy metrics over time.
+
+Functions:
+    plot_accuracy: Visualizes accuracy changes over epochs for training and validation sets.
+    plot_loss: Visualizes loss changes over epochs for training and validation sets.
+
+External Dependencies:
+    - matplotlib.pyplot: For creating line plots.
 """
 import matplotlib.pyplot as plt
 

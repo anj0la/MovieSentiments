@@ -1,7 +1,30 @@
+"""
+File: 3_Epochs_Metrics.py
+
+Author: Anjola Aina
+Date Modified: October 30th, 2024
+
+Displays model testing metrics (accuracy, precision, recall, and F1 score) at selected epochs 
+and learning rates.
+
+Functions:
+    display_metrics_table: Formats and displays testing metrics as a table.
+    run_page: Initializes the Epoch Metrics page and renders the table.
+
+External Dependencies:
+    - pandas: For data manipulation and formatting.
+    - streamlit: Used for displaying content in a web application.
+
+"""
 import pandas as pd
 import streamlit as st
 
-def display_metrics_table():
+def display_metrics_table() -> None:
+    """
+    Creates and displays a sorted table of testing metrics for various epochs and learning rates.
+
+    Metrics include accuracy, precision, recall, and F1 score, and are formatted to two decimal places.
+    """
     data = {
     "Learning Rate": ["0.1"] * 4 + ["0.01"] * 4,
     "Epochs": [10, 25, 50, 100, 10, 25, 50, 100],
@@ -21,7 +44,10 @@ def display_metrics_table():
     # Display the table in Streamlit
     st.markdown(df_sorted.style.hide(axis='index').to_html(), unsafe_allow_html=True)
     
-def run_page():
+def run_page() -> None:
+    """
+    Initializes the Epoch Metrics page and displays testing metrics for model evaluation.
+    """
     # Initalize the page and session variables
     st.set_page_config(page_title='Epoch Metrics', layout='wide')
     

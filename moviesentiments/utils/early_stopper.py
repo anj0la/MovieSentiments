@@ -4,10 +4,16 @@ File: early_stopper.py
 Author: Anjola Aina
 Date Modified: October 30th, 2024
 
-Description:
+This module contains the EarlyStopper class, which implements early stopping functionality based on validation loss improvements.
 
-This file contains the EarlyStopper class which is used for early stopping based on validation loss improvement.
-The original source for the code can be found via the following link: https://stackoverflow.com/questions/71998978/early-stopping-in-pytorch
+Classes:
+    EarlyStopper: Monitors validation loss and stops training if no improvement is observed.
+
+External Dependencies:
+    - None: Utilizes Python standard libraries only.
+    
+Source:
+    Code taken from: https://stackoverflow.com/questions/71998978/early-stopping-in-pytorch
 """
 class EarlyStopper:
     """

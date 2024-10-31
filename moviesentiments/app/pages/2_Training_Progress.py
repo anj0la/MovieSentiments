@@ -1,4 +1,21 @@
-import pandas as pd
+"""
+File: 2_Training_Progress.py
+
+Author: Anjola Aina
+Date Modified: October 30th, 2024
+
+Displays loss and accuracy graphs across various epochs and learning rates.
+
+Functions:
+    create_loss_columns: Displays loss graphs for selected epochs and learning rates.
+    create_accuracy_columns: Displays accuracy graphs for selected epochs and learning rates.
+    display_graphs: Organizes and displays loss and accuracy graphs on the page.
+    run_page: Initializes the Training Progress page and displays training progress information.
+
+External Dependencies:
+    - streamlit: Used for displaying content in a web application.
+
+"""
 import streamlit as st
 
 def create_loss_columns(epoch1: int, epoch2: int, lr1: float = 0.1, lr2: float = 0.01):

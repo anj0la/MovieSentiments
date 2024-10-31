@@ -1,7 +1,32 @@
+"""
+File: Home.py
+
+Author: Anjola Aina
+Date Modified: October 30th, 2024
+
+This module sets up the homepage for the Streamlit application, providing an overview of the project.
+It displays information about the logistic regression model used for sentiment analysis on IMDB movie reviews.
+
+Functions:
+    run_app: Initializes the page layout, displays project background information, and renders metrics as cards.
+
+External Dependencies:
+    - streamlit: Used to configure and display content in a web application.
+    - create_cards (from card): Function to generate HTML-styled cards displaying model performance metrics.
+
+"""
 import streamlit as st
 from card import create_cards
 
-def run_app():
+def run_app() -> None:
+    """
+    Sets up the Streamlit homepage with project background and performance metrics.
+
+    The page provides an introduction to the project, highlighting model specifics such as
+    learning rate selection, L2 regularization, and early stopping. It also displays final
+    model results with accuracy, precision, recall, and F1 score.
+
+    """
     # Initalize the page
     st.set_page_config(page_title='Home', layout='wide')
     st.sidebar.success('Select a page above.')

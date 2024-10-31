@@ -4,9 +4,16 @@ File: predict.py
 Author: Anjola Aina
 Date Modified: October 30th, 2024
 
-Description:
+This module contains functions used to make predictions with the logistic regression model and is integrated with the Streamlit app.
 
-This file is used to make a prediction using the logistic regression model. It is utilized in the Streamlit app to display the results of the model to the user.
+Functions:
+    make_prediction: Preprocesses input text, loads the trained model, and returns prediction with confidence scores.
+
+External Dependencies:
+    - joblib: Loads the pre-trained model and vectorizer.
+    - numpy, pandas: For data processing.
+    - logistic_regression (from model): Provides logistic regression model.
+    - clean_review (from utils.preprocess): Cleans input text data.
 """
 import joblib
 import numpy as np

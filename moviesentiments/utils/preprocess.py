@@ -2,11 +2,21 @@
 File: preprocess.py
 
 Author: Anjola Aina
-Date Modified: October 22nd, 2024
+Date Modified: October 30th, 2024
 
-Description:
+This module defines functions used to preprocess, clean, and save text data for the sentiment analysis model.
 
-This file is used to preprocess data.
+Functions:
+    save_to_csv: Saves cleaned text and labels into a CSV file.
+    encode_labels: Encodes labels as 0 (positive) or 1 (negative).
+    clean_review: Cleans and preprocesses text data.
+    preprocess: Integrates preprocessing steps and saves the cleaned data.
+
+External Dependencies:
+    - csv: For handling CSV file operations.
+    - emoji: Used to convert emojis to text.
+    - numpy, pandas: For data manipulation and storage.
+    - nltk (stopwords, WordNetLemmatizer): Provides text processing utilities.
 """
 import csv
 import emoji
@@ -20,9 +30,9 @@ def save_to_csv(cleaned_text: list[str], labels: list[str], file_path: str) -> N
     Saves the cleaned text and corresponding labels into a CSV file.
         
     Args:
-    cleaned_text (list[str]: The cleaned text data.
-    labels (list[str]): The labels for each piece of text.
-    file_path (str): The path to save the CSV file.
+        cleaned_text (list[str]): Cleaned text data.
+        labels (list[str]): Labels for each piece of text.
+        file_path (str): Path to save the CSV file.
     """
     fields = ['review', 'sentiment']
     rows = []
@@ -39,7 +49,7 @@ def encode_labels(df: pd.DataFrame) -> list[str]:
     Converts labels of each review into 0 (positive) or 1 (negative).
 
     Args:
-        df (pd.DataFrame): The reviews Pandas DataFrame.
+        df (pd.DataFrame): The dataframe containing the reviews.
 
     Returns:
         list[str]: The list of labels.
@@ -114,6 +124,3 @@ def preprocess(file_path: str, output_file_path: str) -> None:
     
     # Save data to new CSV file
     save_to_csv(cleaned_text, encoded_labels, output_file_path)
-
-def text_to_sequence(text, vocab, unk_index):
-    return [vocab.get(word, unk_index) for word in text.split()]

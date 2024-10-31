@@ -4,9 +4,15 @@ File: train.py
 Author: Anjola Aina
 Date Modified: October 30th, 2024
 
-Description:
+This module defines the training function for the logistic regression model. It includes data preparation, training, and evaluation.
 
-This file contains the train function which transforms the textual data into a numerical format suitable for the LogisiticRegression model and calls the fit function from the class to train the model on the transformed data.
+Functions:
+    train: Preprocesses data, trains the logistic regression model, and outputs evaluation metrics.
+
+External Dependencies:
+    - joblib: Saves model components (vectorizer, label encoder).
+    - pandas, sklearn: For data manipulation and model preparation.
+    - logistic_regression (from model): Provides logistic regression model.
 """
 import joblib
 import pandas as pd
