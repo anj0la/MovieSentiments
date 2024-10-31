@@ -22,7 +22,9 @@ Usage:
         $ moviesentiments --text This is a fantastic movie!
 """
 import argparse
+import nltk
 from moviesentiments.model.predict import make_prediction
+from moviesentiments.utils.install_nltk_data import download_nltk_data
 
 def main():
     parser = argparse.ArgumentParser(description='Make a sentiment prediction from the command line.')
@@ -32,6 +34,13 @@ def main():
     
     # Parse arguments
     args = parser.parse_args()
+    
+    # Check if required nltk libraries have been downloaded to project
+    try:
+        nltk.data.find('stopwords')
+        nltk.data.find('corpora/wordnet')
+    except LookupError:
+        download_nltk_data()
 
     # Run prediction and output result
     if args.text != ' ':

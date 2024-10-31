@@ -16,7 +16,7 @@ External Dependencies:
 """
 import streamlit as st
 from card import create_cards
-from moviesentiments.utils.install_nltk_data import download_stopwords
+from moviesentiments.utils.install_nltk_data import download_nltk_data
 
 def run_app() -> None:
     """
@@ -27,8 +27,8 @@ def run_app() -> None:
     model results with accuracy, precision, recall, and F1 score.
 
     """
-    # Install nltk stopwords
-    download_stopwords()
+    # Install nltk data
+    download_nltk_data()
     
     # Initalize the page
     st.set_page_config(page_title='Home', layout='wide')
