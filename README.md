@@ -24,7 +24,7 @@ The epoch metrics page displays the testing metrics done on the testing set for 
 
 ## Setup
 
-Listed below are the following steps to use the project.
+Setting up the project is relatively simple. If choosing to use the command-line interface option, follow the steps below.
 
 ### 1. Create a virtual environment in the directory of the project.
 ```
@@ -50,12 +50,7 @@ On Windows:
 pip install -r requirements.txt
 ```
 
-### 4. Build the project by running the following code in your virtual environment.
-
-```
-hatch build
-```
-### 5. Install the project
+### 5. Install and build the project
 
 Example: installing the project by its name. 
 ```
@@ -66,9 +61,9 @@ Example: installing the project in editable mode.
 ```
 pip install -e .
 ```
-### 6. Run the project
+### 6. Run the project and make a prediction
 ```
-python moviesentiments.py
+moviesentiments --text "I loved the movie!"
 ```
 
 ## Retraining the Model
