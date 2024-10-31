@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "moviesentiments"
+version = "1.0"
+description = "A Streamlit & console app for movie sentiment analysis."
+readme = "README.md"
+readme-content-type = "text/markdown"
+requires-python = ">=3.10"
+authors = [
+    { name = "Anjola Aina", email = "anjola.aina@gmail.com" }
+]
+homepage = "https://github.com/anj0la/MovieSentiments"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent"
+]
+
+[project.scripts]
+moviesentiments = "moviesentiments.main:main"
+
+[project.urls]
+homepage = "https://github.com/anj0la/MovieSentiments"
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "/.github",
+]
