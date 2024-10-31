@@ -30,8 +30,8 @@ def display_prediction_results():
             data = {
                 'Input Text': [st.session_state.input_text],
                 'Prediction': [st.session_state.prediction],
-                'Confidence (Positive)': [f'{st.session_state.score:.2%}'],
-                'Confidence (Negative)': [f'{1 - st.session_state.score:.2%}']
+                'Probability (Positive)': [f'{st.session_state.score:.2%}'],
+                'Probability (Negative)': [f'{1 - st.session_state.score:.2%}']
             }
             # Convert to DataFrame for easy display in Streamlit
             df = pd.DataFrame(data)
