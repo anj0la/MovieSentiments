@@ -54,7 +54,7 @@ pip install -r requirements.txt
 
 Example: installing the project by its name. 
 ```
-pip install MovieSentiments
+pip install moviesentiments
 ```
 
 Example: installing the project in editable mode. 
