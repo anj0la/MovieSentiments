@@ -2,7 +2,7 @@
 File: logistic_regression.py
 
 Author: Anjola Aina
-Date Modified: October 29th, 2024
+Date Modified: October 30th, 2024
 
 Description:
 
@@ -13,20 +13,36 @@ import time
 from tqdm import tqdm
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-from utils.early_stopping import EarlyStopper
+from moviesentiments.utils.early_stopper import EarlyStopper
 from utils.plot_graphs import plot_loss, plot_accuracy
 
 class LogisticRegression:
+    """
+    A logistic regression model with sigmoid activation and optional L2 regularization.
+
+    This class implements a simple logistic regression model using gradient descent optimization.
+    It includes support for mini-batch training, L2 regularization, and early stopping.
+
+    Attributes:
+        lr (float): Learning rate for gradient descent.
+        epochs (int): Number of training epochs.
+        batch_size (int): Size of mini-batches used for training.
+        reg_lambda (float): L2 regularization parameter to penalize large weights.
+        weights (np.ndarray or None): Model weights, initialized during training.
+        bias (float or None): Model bias term, initialized during training.
+        early_stopper (EarlyStopper): Instance of EarlyStopper for early stopping based on validation loss.
+    """
     def __init__(self, lr: float = 0.1, epochs: int = 10, batch_size: int = 64, reg_lambda: float = 0.0, patience: int = 3, min_delta: int = 10) -> None:
         """
-        A class representing the implementation of a logistic regression with a sigmoid activation function.
+        Initializes the logistic regression model with hyperparameters.
 
         Args:
-            lr (float, optional): The learning rate. Defaults to 0.1.
-            epochs (int, optional): The number of epochs. Defaults to 100.
-            batch_size (int, optional): The batch size. Defaults to 64.
-            reg_lambda (float, optional): The hyperparameter for L2 regularization. Defaults to 0.0.
-            no_progress_epochs (int, optional): The early stopping parameter. Defaults to 10.
+            lr (float, optional): Learning rate for optimization. Defaults to 0.1.
+            epochs (int, optional): Number of training epochs. Defaults to 10.
+            batch_size (int, optional): Size of mini-batches for training. Defaults to 64.
+            reg_lambda (float, optional): L2 regularization strength. Defaults to 0.0.
+            patience (int, optional): Number of epochs without improvement for early stopping. Defaults to 3.
+            min_delta (int, optional): Minimum improvement threshold for validation loss. Defaults to 10.
         """
         self.lr = lr
         self.epochs = epochs
@@ -38,7 +54,7 @@ class LogisticRegression:
     
     def _initialize_weights(self, n_features: int) -> None:
         """ 
-        Initializes the weights in the binary classifer by assigning fixed values to the weights.
+        Initializes the weights in the logistic regression by assigning fixed values to the weights.
         
         Args:
             n_features(int): The number of features.
@@ -102,7 +118,7 @@ class LogisticRegression:
             y_val (np.ndarray): The corresponding labels for the validation set.
 
         Returns:
-            tuple[float, float]: A tuple containing the loss and accuracy score for the validation set.
+            tuple(float, float): A tuple containing the loss and accuracy score for the validation set.
         """
         # Forward pass on entire validation set
         y_hat = self._forward_pass(X_val)
@@ -134,15 +150,15 @@ class LogisticRegression:
         """
         Saves the trained weights and bias.
         """
-        np.save('moviesentiments_lr/data/model/weights.npy', self.weights)
-        np.save('moviesentiments_lr/data/model/bias.npy', np.array(self.bias))
+        np.save('moviesentiments/data/model/weights.npy', self.weights)
+        np.save('moviesentiments/data/model/bias.npy', np.array(self.bias))
         
     def load_model(self) -> None:
         """
-        Loads the model by setting the weights and bias to be its trained values.
+        Loads the trained weights and bias to the model.
         """
-        self.weights = np.load('moviesentiments_lr/data/model/weights.npy')
-        self.bias = np.load('moviesentiments_lr/data/model/bias.npy')
+        self.weights = np.load('moviesentiments/data/model/weights.npy')
+        self.bias = np.load('moviesentiments/data/model/bias.npy')
 
     def fit(self, X_train: np.ndarray, y_train: np.ndarray) -> None:
         """
@@ -235,18 +251,15 @@ class LogisticRegression:
             print(f'\t Train Loss: {avg_loss:.3f} | Train Acc: {train_accuracy * 100:.2f}%')
             print(f'\t Valid Loss: {val_loss:.3f} | Valid Acc: {val_accuracy * 100:.2f}%')
             
-            
         # Visualize (and save) plots
         x_axis = list(range(1, self.epochs + 1))
-        plot_loss(x_axis=x_axis, train_losses=all_train_losses, val_losses=all_val_losses, figure_path=f'moviesentiments_lr/figures/loss_epoch_{len(x_axis)}_lr_{self.lr}.png')
-        plot_accuracy(x_axis=x_axis, train_accuracy=all_train_accuracy,val_accuracy= all_val_accuracy, figure_path=f'moviesentiments_lr/figures/accuracy_epoch_{len(x_axis)}_lr_{self.lr}.png')
+        plot_loss(x_axis=x_axis, train_losses=all_train_losses, val_losses=all_val_losses, figure_path=f'moviesentiments/figures/loss_epoch_{len(x_axis)}_lr_{self.lr}.png')
+        plot_accuracy(x_axis=x_axis, train_accuracy=all_train_accuracy,val_accuracy= all_val_accuracy, figure_path=f'moviesentiments/figures/accuracy_epoch_{len(x_axis)}_lr_{self.lr}.png')
 
     def predict(self, X: np.ndarray) -> float:
         """
-        Predicts the probability (output either 0 or 1) for a given input X, by using the sigmoid function.
-        As the sigmoid function may give a decimal value, we use np.round so that values over 0.5 (inclusive) are rounded up to 1,
-        and values less than 0.5 (exclusive) are rounded down to 0.
-
+        Predicts the probability for a given input X with the use of the sigmoid activation function.
+        
         Args:
             X (ndarray): The input to make a prediction on.
 
@@ -256,7 +269,7 @@ class LogisticRegression:
         z = np.dot(X, self.weights) + self.bias
         return self._sigmoid(z)
     
-    def evaluate(self, X_test: np.ndarray, y_test: np.ndarray) -> float:
+    def evaluate(self, X_test: np.ndarray, y_test: np.ndarray) -> tuple[float, float, float, float]:
         """
         Evaluates the trained model on the testing set.
 
@@ -265,7 +278,7 @@ class LogisticRegression:
             y_test (np.ndarray): The corresponding labels for the testing set.
 
         Returns:
-            float: The accuracy score.
+            tuple(float, float, float, float): A tuple containing the following testing metrics: accuracy, precision, recall and f1.
         """
         y_pred = np.round(self.predict(X_test))
         

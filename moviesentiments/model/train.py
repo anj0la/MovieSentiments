@@ -2,11 +2,11 @@
 File: train.py
 
 Author: Anjola Aina
-Date Modified: October 29th, 2024
+Date Modified: October 30th, 2024
 
 Description:
 
-This file contains the train function which is used to train the custom LogisiticRegression model class.
+This file contains the train function which transforms the textual data into a numerical format suitable for the LogisiticRegression model and calls the fit function from the class to train the model on the transformed data.
 """
 import joblib
 import pandas as pd
@@ -21,17 +21,16 @@ def train(file_path: str, lr: float = 1e-1, epochs: int = 200, batch_size: int =
     Trains the logisitic regression model.
 
     Args:
-        file_path (str): The path to the cleaned file.
-        lr (float, optional): The learning rate. Defaults to 0.01.
-        epochs (int, optional): The number of epochs. Defaults to 100.
-        batch_size (int, optional): The batch size. Defaults to 64.
-        decay_factor (float, optional): The decay factor (how fast the learning rate decreases). Defaults to 1.0.
-        lr_step (int, optional): The interval at which the learning rate decreases by the decay factor. Defaults to 10.
-        reg_lambda (float, optional): The hyperparameter for L2 regularization. Defaults to 0.01.
-        no_progress_epochs (int, optional): The early stopping parameter. Defaults to 10.
+        lr (float, optional): Learning rate for optimization. Defaults to 1e-1 (0.1).
+        epochs (int, optional): Number of training epochs. Defaults to 200.
+        batch_size (int, optional): Size of mini-batches for training. Defaults to 64.
+        reg_lambda (float, optional): L2 regularization strength. Defaults to 1e-3 (0.001).
+        patience (int, optional): Number of epochs without improvement for early stopping. Defaults to 3.
+        min_delta (int, optional): Minimum improvement threshold for validation loss. Defaults to 10.
+
     """
-    vectorizer_path = 'moviesentiments_lr/data/model/vectorizer.pkl'
-    le_path = 'moviesentiments_lr/data/model/le.pkl'
+    vectorizer_path = 'moviesentiments/data/model/vectorizer.pkl'
+    le_path = 'moviesentiments/data/model/le.pkl'
     df = pd.read_csv(file_path)
     vectorizer = TfidfVectorizer()
     le = LabelEncoder()
@@ -71,4 +70,4 @@ def train(file_path: str, lr: float = 1e-1, epochs: int = 200, batch_size: int =
     print(f'Recall: {recall * 100:.2f}%')    
     print(f'F1 Score: {f1_score * 100:.2f}%')    
     
-# train(file_path='moviesentiments_lr/data/reviews/cleaned_movie_reviews.csv')
+# train(file_path='moviesentiments/data/reviews/cleaned_movie_reviews.csv')

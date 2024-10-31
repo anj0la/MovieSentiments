@@ -2,12 +2,11 @@
 File: predict.py
 
 Author: Anjola Aina
-Date Modified: October 29th, 2024
+Date Modified: October 30th, 2024
 
 Description:
 
-This file is used to make a prediction using the logistic regression model.
-TODO: Update documentation.
+This file is used to make a prediction using the logistic regression model. It is utilized in the Streamlit app to display the results of the model to the user.
 """
 import joblib
 import numpy as np
@@ -15,15 +14,18 @@ import pandas as pd
 from model.logistic_regression import LogisticRegression
 from utils.preprocess import clean_review
 
-def make_prediction(sentence: str) -> None:
+def make_prediction(sentence: str) -> tuple[float, str]:
     """
-    Makes a prediction with the specificed model.
+    Makes a prediction with the LogisticRegression model.
 
     Args:
-        model_name (str): The model used to make a prediction. Defaults to LR.
+        sentence (str): The sentence to make a prediction on.
+        
+    Returns:
+        tuple(float, str): A tuple containing the raw logits of the model and the predicted class.
     """
-    vectorizer_path = 'moviesentiments_lr/data/model/vectorizer.pkl'
-    le_path = 'moviesentiments_lr/data/model/le.pkl'
+    vectorizer_path = 'moviesentiments/data/model/vectorizer.pkl'
+    le_path = 'moviesentiments/data/model/le.pkl'
     
     # Load the trained vectorizer and label encoder    
     vectorizer = joblib.load(vectorizer_path)
@@ -46,4 +48,4 @@ def make_prediction(sentence: str) -> None:
     prediction = prediction.astype(int).flatten()
     label = le.inverse_transform(prediction)
     
-    return logits, label
+    return logits, label[0]
