@@ -1,11 +1,10 @@
 # MovieSentiments
 
-![MovieSentiments](moviesentiments_logo_image.png)
-
 <div align="center">
-    <img src="moviesentiments_logo_image.png" alt="Screenshot of the app" width="400">
+    <img src="moviesentiments_logo_image.png" alt="Screenshot of the logo" width="400">
 </div>
 
+## A Sentiment Analysis Tool
 
 MovieSentiments is a project designed to analyze IMDB movie reviews using a custom-built Logistic Regression model. Created to deepen understanding of neural network fundamentals, the project focuses on key steps such as loss computation, backpropagation, and weight updates, which are typically handled automatically by libraries like PyTorch, Keras, and TensorFlow. The model has achieved an accuracy score of 88.12% and generalizes well.
 
