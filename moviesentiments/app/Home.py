@@ -15,7 +15,7 @@ External Dependencies:
     - create_cards (from card): Function to generate HTML-styled cards displaying model performance metrics.
 """
 import streamlit as st
-from card import create_cards
+from moviesentiments.app.card import create_cards
 from moviesentiments.utils.install_nltk_data import download_nltk_data
 
 def run_app() -> None:
