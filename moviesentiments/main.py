@@ -35,9 +35,9 @@ def main():
     # Parse arguments
     args = parser.parse_args()
     
-    # Check if required nltk libraries have been downloaded to project
+    # Try to find resources, only download if not found
     try:
-        nltk.data.find('stopwords')
+        nltk.data.find('corpora/stopwords')
         nltk.data.find('corpora/wordnet')
     except LookupError:
         download_nltk_data()
