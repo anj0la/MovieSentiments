@@ -19,7 +19,7 @@ The Streamlit app can be found via the following link: https://moviesentiments.s
 To make a prediction, simply navigate to the **Make Prediction** page and input a sentence to see the prediction, and positive / negative class probabilities.
 The following demonstration shows how one can navigate to the page and make a prediction for the sentence "I loved the movie". 
 
-[Insert video here]
+https://github.com/user-attachments/assets/63bdedbc-3732-4ba0-a135-27214c8df82a
 
 ### Viewing Training Progress and Testing Metrics
 
@@ -27,11 +27,13 @@ Click on the **Training Progress** page to view some of the graphs that were gen
 
 To view the testing metrics for the model at the specified epochs with the above learning rates, click on the **Epoch Metrics** page.
 
+https://github.com/user-attachments/assets/9319071f-b36d-4e3b-891f-87f9d483d511
+
 ## Using the Console
 
 Using the console is relatively simple. Once the project has been built, using the --text field, input your sentence to get a prediction.
 
-[Insert video demo here]
+https://github.com/user-attachments/assets/a948107a-a64d-44e5-ba5e-fb1db1124acb
 
 ## Building the Project
 
