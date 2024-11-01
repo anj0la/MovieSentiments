@@ -1,7 +1,12 @@
+-e .
+emoji
+joblib
+hatchling
+hatch
+matplotlib
 numpy
 pandas
 scikit-learn
-matplotlib
-emoji
-hatchling
-hatch
+streamlit
+tqdm
+nltk
