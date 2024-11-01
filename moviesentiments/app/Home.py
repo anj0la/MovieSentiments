@@ -2,7 +2,7 @@
 File: Home.py
 
 Author: Anjola Aina
-Date Modified: October 30th, 2024
+Date Modified: October 31st, 2024
 
 This module sets up the homepage for the Streamlit application, providing an overview of the project.
 It displays information about the logistic regression model used for sentiment analysis on IMDB movie reviews.

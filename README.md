@@ -8,29 +8,34 @@
 
 MovieSentiments is a project designed to analyze IMDB movie reviews using a custom-built Logistic Regression model. Created to deepen understanding of neural network fundamentals, the project focuses on key steps such as loss computation, backpropagation, and weight updates, which are typically handled automatically by libraries like PyTorch, Keras, and TensorFlow. The model has achieved an accuracy score of 88.12% and generalizes well.
 
-The model is deployed via Streamlit, a simple app framework for web applications, with four main interfaces: the homepage, the prediction page for user input and predictions, and the training progress and epoch metrics pages for insight into model performance. More details on each page are provided below.
+The model can be used via two methods: using Streamlit or the console. Streamlit is a simple app framework for web applications, and the application provides four main interfaces: the homepage, the prediction page for user input and predictions, and the training progress and epoch metrics pages for insight into model performance. More details on how to use the two methods can be found below.
 
 The dataset used to train the model can be found here. https://www.kaggle.com/datasets/marlesson/myanimelist-dataset-animes-profiles-reviews?resource=download&select=reviews.csv
 
-## Home Page
+## Using the Streamlit App
 
-The home page provides an overview of the project, along with the model's final testing metrics. A GitHub link is also available as a button for easy access to the project repository.
+The Streamlit app can be found via the following link: https://moviesentiments.streamlit.app/
 
-## Make Prediction Page
+To make a prediction, simply navigate to the **Make Prediction** page and input a sentence to see the prediction, and positive / negative class probabilities.
+The following demonstration shows how one can navigate to the page and make a prediction for the sentence "I loved the movie". 
 
-On the prediction page, users can input text for analysis and receive predictions labeled as positive or negative, along with probability scores for each class.
+[Insert video here]
 
-## Training Progress Page
+### Viewing Training Progress and Testing Metrics
 
-This page offers insight into the training process, including learning rate selection. After initial testing, learning rates of 0.1 and 0.01 were chosen, as a rate lower than 0.01 failed to train effectively. L2 regularization, initially set at 1e-2, was reduced to 1e-3 in the final model to prevent underfitting.
+Click on the **Training Progress** page to view some of the graphs that were generated during training with the selected learning rates. The learning rates of 0.1 and 0.01 were chosen, as a rate lower than 0.01 failed to train effectively after initial testing. 
 
-## Epoch Metrics Page
+To view the testing metrics for the model at the specified epochs with the above learning rates, click on the **Epoch Metrics** page.
 
-The epoch metrics page displays the testing metrics done on the testing set for the model at the specified epochs with learning rates 0.1 and 0.01 respectively. It is clear that the model performs better when the learning rate is 0.1 as opposed to 0.01, which contributed to the decision to stick with a learning rate of 0.1 for the final model.
+## Using the Console
 
-## Setup
+Using the console is relatively simple. Once the project has been built, using the --text field, input your sentence to get a prediction.
 
-Setting up the project is relatively simple. If choosing to use the command-line interface option, follow the steps below.
+[Insert video demo here]
+
+## Building the Project
+
+Before using the console application, the project must first be set up in a virtual environment. Follow the steps below as a guide. This example uses .venv as the virtual environment, but feel free to substitute with your preferred environment name.
 
 ### 1. Create a virtual environment in the directory of the project.
 ```
@@ -51,23 +56,12 @@ On Windows:
 .venv\Scripts\activate
 ```
 
-### 3. Install the dependencies into your virtual environment.
+### 3. Install the dependencies into your virtual environment. 
+*Note: The project is built in editable mode so there's no need to build the project after installing all dependencies from requirements.txt.*
 ```
 pip install -r requirements.txt
 ```
-
-### 5. Install and build the project.
-
-Example: installing the project by its name. 
-```
-pip install moviesentiments
-```
-
-Example: installing the project in editable mode. 
-```
-pip install -e .
-```
-### 6. Run the project and make a prediction.
+### 4. Run the project and make a prediction.
 ```
 moviesentiments --text "I loved the movie!"
 ```

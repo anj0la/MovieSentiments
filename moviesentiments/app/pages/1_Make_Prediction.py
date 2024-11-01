@@ -2,7 +2,7 @@
 File: 1_Make_Prediction.py
 
 Author: Anjola Aina
-Date Modified: October 30th, 2024
+Date Modified: October 31st, 2024
 
 Allows users to input text and receive a sentiment prediction, including probabilities for each class.
 
@@ -53,7 +53,7 @@ def display_prediction_results():
     """
     Displays the prediction results including predicted label and confidence scores.
     """
-    if st.session_state.prediction != '':
+    if st.session_state.sentence != '':
         with st.container(border=True):
             # Prepare the data for display
             data = {
